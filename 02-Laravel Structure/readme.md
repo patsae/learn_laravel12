@@ -97,3 +97,25 @@ PHP Artisan คือชุดคำสั่งที่มาพร้อม�
 ```
     php artisan install:api
 ```
+
+# .env
+
+.env คือไฟล์ที่ใช้เก็บค่า Environment Variables ซึ่งเป็นตัวแปรที่ใช้ในการกำหนดค่าต่างๆ สำหรับโปรเจกต์ เช่น API keys, database credentials, หรือการตั้งค่าอื่นๆ ที่อาจแตกต่างกันไปในแต่ละสภาพแวดล้อม (development, production)
+
+```
+   copy .env .env.dev
+   copy .env .env.production
+```
+
+- แก้ไข composer.json ที่ key "scripts" เพิ่มคำสั่งดังนี้
+
+```
+      "dev": [
+        "Composer\\Config::disableProcessTimeout",
++++     "@php -r \"copy('.env.dev', '.env');\"",
+        "npx concurrently -c \"#93c5fd,#c4b5fd,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"npm run dev\" --names='server,queue,vite'"
+      ],
++++   "build": [
++++     "@php -r \"copy('.env.production', '.env');\""
++++   ],
+```
