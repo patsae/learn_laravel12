@@ -24,7 +24,7 @@
 - Laravel installer
 - Node.js หรือ Bun.js หรือ javascript runtime อื่นๆ (option)
 
-# 🚀 ติดตั้ง PHP 8.4 และ Composer บน Windows ด้วยคำสั่งเดียว
+# 🚀 ติดตั้ง PHP และ Composer บน Windows ด้วยคำสั่งเดียว
 
 - เปิด PowerShell แบบ **Run as Administrator** แล้วคัดลอกคำสั่งด้านล่างนี้ไปวาง:
 
@@ -32,7 +32,13 @@
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://php.new/install/windows/8.4'))
 ```
 
-- ทดสอบพิมพ์คำสั่ง
+- ตำแหน่งติดตั้ง php และ composer
+
+```
+C:\Users\[win user]\.config\herd-lite\bin
+```
+
+- ตรวจสอบ version ของ php และ composer
 
 ```
 composer -V
@@ -43,8 +49,52 @@ Composer version 2.8.3 2024-11-17 13:13:04
 PHP version 8.4.0 (C:\Users\[win-user]\.config\herd-lite\bin\php.exe)
 Run the "diagnose" command to get more detailed diagnostics output.
 
+- ตรวจสอบ extension ของ php
+
+```
+php -m
+```
+
 # ติดตั้ง Laravel installer
 
 ```
 composer global require laravel/installer
 ```
+
+# สร้าง Laravel Application
+
+```
+#คำสั่ง laravel new [project name]
+laravel new example-app
+
+```
+
+```
+#Which starter kit would you like to install? [None]
+#Which database will your application use? [SQLite]
+#Would you like to run npm install and npm run build? (yes/no) [no]
+```
+
+- เสร็จสิ้นการสร้าง Laravel application 🎉🎉🎉
+
+# เพิ่มเติม
+
+##### หากในโปรเจคของเรามีการทำงานร่วมกับ Javascript Package Library ต่างๆ (แนะนำ)
+
+- ติดตั้ง Bun.js สำหรับใช้เป็น Javascript Runtime และจัดการ javascript package
+
+```
+powershell -c "irm bun.sh/install.ps1 | iex"
+```
+
+- เข้าโฟลเดอร์ project ของเรา
+
+```
+cd example-app
+ิbun install
+```
+
+- ภายในโฟลเดอร์โปรเจคจะปรากฏไฟล์และโฟลเดออร์เหล่านี้เพิ่มเข้ามา
+- node_modulues/
+- bun.lock
+- vite.config.js

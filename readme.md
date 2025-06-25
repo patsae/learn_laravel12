@@ -38,6 +38,7 @@ Laravel ใช้แนวทาง **MVC (Model-View-Controller)** เพื่
 ### ✅ 7. มี เครื่องมือสำหรับ Frontend ที่สมบูรณ์
 
 - มีชุด Starter kit สำหรับ Javascript Framework
+- รองรับการทำงานร่วมกับ npm the package manager [npm](https://www.npmjs.com/)
 - เช่น Laravel Jetstream, Breeze, Livewire, Sanctum, Horizon, Nova ฯลฯ
 - รองรับ API และ SPA ได้ดี
 
@@ -46,6 +47,7 @@ Laravel ใช้แนวทาง **MVC (Model-View-Controller)** เพื่
 - เอกสารการใช้งานครบถ้วน มีตัวอย่างมากมาย
 - ชุมชนช่วยกันตอบคำถาม และมี Package เสริมมากมาย
 - มี Composer รองรับสำหรับการจัดการ package dependencies
+- สามารถค้นหา package ได้ที่ [PHP Package dependencies](https://packagist.org/)
 
 ---
 
