@@ -58,3 +58,12 @@
     ```
     php artisan storage:link
     ```
+
+# First Step
+
+จุดเริ่มต้นของทุกคำขอ (request) ที่เข้ามายังแอปพลิเคชัน Laravel คือไฟล์ public/index.php
+คำขอทั้งหมดจะถูกส่งมายังไฟล์นี้โดยการตั้งค่าของ Web Server (เช่น Apache หรือ Nginx)
+โดยไฟล์ index.php จะไม่ได้มีโค้ดจำนวนมาก แต่มันทำหน้าที่เป็นจุดเริ่มต้นในการโหลดส่วนต่างๆ ที่เหลือของเฟรมเวิร์ก
+
+ไฟล์ index.php จะทำการโหลด autoloader ที่ถูกสร้างโดย Composer และจากนั้นจะดึงอินสแตนซ์ของแอปพลิเคชัน Laravel มาจากไฟล์ bootstrap/app.php
+การทำงานแรกที่ Laravel ดำเนินการคือ การสร้างอินสแตนซ์ของ application / service container ขึ้นมา
