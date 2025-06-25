@@ -35,8 +35,9 @@ Laravel ใช้แนวทาง **MVC (Model-View-Controller)** เพื่
 
 - Command Line Tool สำหรับช่วยพัฒนาระบบ เช่น สร้าง Model, Controller, Migration, Seeder เป็นต้น
 
-### ✅ 7. มี Ecosystem ที่สมบูรณ์
+### ✅ 7. มี เครื่องมือสำหรับ Frontend ที่สมบูรณ์
 
+- มีชุด Starter kit สำหรับ Javascript Framework
 - เช่น Laravel Jetstream, Breeze, Livewire, Sanctum, Horizon, Nova ฯลฯ
 - รองรับ API และ SPA ได้ดี
 
@@ -44,6 +45,7 @@ Laravel ใช้แนวทาง **MVC (Model-View-Controller)** เพื่
 
 - เอกสารการใช้งานครบถ้วน มีตัวอย่างมากมาย
 - ชุมชนช่วยกันตอบคำถาม และมี Package เสริมมากมาย
+- มี Composer รองรับสำหรับการจัดการ package dependencies
 
 ---
 
