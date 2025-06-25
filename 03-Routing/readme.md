@@ -18,10 +18,8 @@ return Application::configure(basePath: dirname(__DIR__))
     })->create();
 ```
 
-##### Route
-
 - เปิดไฟล์ /routes/web.php
-- ในไฟล์นี้จะให้ว่ามี route อยู่หนึ่งเส้นคือ '/' ซึ่งหมายถึง Homepage ของเว็บไซต์
+- ในไฟล์นี้จะเห็นว่ามี route อยู่หนึ่งเส้นคือ '/' ซึ่งหมายถึง Homepage ของเว็บไซต์
 
 ```
 Route::get('/', function () {
@@ -32,19 +30,17 @@ Route::get('/', function () {
 ##### รายละเอียดแต่ละส่วน:
 
 - Route::get(...)
-  → กำหนดเส้นทางสำหรับ HTTP GET request
-  (เช่น เวลาผู้ใช้พิมพ์ URL เข้ามาในเบราว์เซอร์)
-  → หากต้องการให้เส้นทางนี้เป็น GET, POST, PUT, DELETE เราสามารถกำหนด HTTP method ได้ที่ตรงนี้
+  - กำหนดเส้นทางสำหรับ HTTP GET request (เช่น เวลาผู้ใช้พิมพ์ URL เข้ามาในเบราว์เซอร์)
+  - หากต้องการให้เส้นทางนี้เป็น GET, POST, PUT, DELETE เราสามารถกำหนด HTTP method ได้ที่ตรงนี้
 - '/'
-  → หมายถึง เส้นทางหลัก (Homepage) ของเว็บไซต์
-  เช่น http://yourdomain.com/
+  - หมายถึง เส้นทางหลัก (Homepage) ของเว็บไซต์ เช่น http://yourdomain.com/
 - function () { return view('welcome'); }
-  → เป็น callback function (หรือ closure) ที่จะถูกเรียกเมื่อมีการเข้าถึงเส้นทาง /
-  → ในที่นี้ view('welcome') หมายถึงการแสดงผล หน้า View ชื่อ welcome.blade.php ซึ่งมักอยู่ใน resources/views/welcome.blade.php
+  - เป็น callback function (หรือ closure) ที่จะถูกเรียกเมื่อมีการเข้าถึงเส้นทาง /
+  - ในที่นี้ view('welcome') หมายถึงการแสดงผล หน้า View ชื่อ welcome.blade.php ซึ่งมักอยู่ใน resources/views/welcome.blade.php
 
 # Route Parameters
 
-ใน Laravel เราสามารถส่ง Parameters ต่างๆ มากับ url หรือรับค่า Parameters จาก url ได้โดยการประกาศ parameter ไว้ในเครื่องหมาย {} แล้วที่ callback function ให้ประกาศตัวแปรสำหรับรับ parameter จาก url ขึ้นมา โดยชื่อ paramter ที่ url กับที่ callback function ต้องเป็นชื่อเดียวกัน
+ใน Laravel เราสามารถส่ง Parameters ต่างๆ มากับ url หรือรับค่า Parameters จาก url ได้โดยการประกาศ parameter ไว้ในเครื่องหมาย { } แล้วที่ callback function ให้ประกาศตัวแปรสำหรับรับ parameter จาก url ขึ้นมา โดยชื่อ paramter ที่ url กับที่ callback function ต้องเป็นชื่อเดียวกัน
 
 ```
 Route::get('/user/{id}', function (string $id) {
@@ -110,7 +106,7 @@ Route::get('/user')->group(function(){
 
 # Route for Api
 
-การสร้าง route สำหรับเส้น api โดยปกติมักจะทำ route แยกออกมาจากใน่สวนของ /route/web.php เพื่อความสะดวกในการบริหารจัดการและความเป็นระเบียบเรียบร้อย
+การสร้าง route สำหรับเส้น api โดยปกติมักจะทำ route แยกออกมาจากในส่วนของ /route/web.php เพื่อความสะดวกในการบริหารจัดการและความเป็นระเบียบเรียบร้อย
 
 ```
 php artisan install:api
@@ -120,11 +116,13 @@ One new database migration has been published. Would you like to run all pending
 เมื่อทำการติดตั้ง route api เสร็จแล้วจะได้ไฟล์ /routes/api.php เพิ่มขึ้นมาและใน /bootstrap/app.php จะมีการลงทะเบียน route ของ api เพิ่มขึ้นมา
 
 ```
+// routes
         /routes
 ++++     - api.php
          - web.php
          - console.php
 
+// bootstrap/app.php
         return Application::configure(basePath: dirname(__DIR__))
         ->withRouting(
             web: __DIR__.'/../routes/web.php',

@@ -66,7 +66,6 @@ composer global require laravel/installer
 ```
 #คำสั่ง laravel new [project name]
 laravel new example-app
-
 ```
 
 ```
@@ -82,6 +81,8 @@ laravel new example-app
 ##### หากในโปรเจคของเรามีการทำงานร่วมกับ Javascript Package Library ต่างๆ (แนะนำ)
 
 - ติดตั้ง Bun.js สำหรับใช้เป็น Javascript Runtime และจัดการ javascript package
+- เปิด Powershell และให้ Run as Administrator
+- พิมพ์คำสั่งติดตั้ง bun.js
 
 ```
 powershell -c "irm bun.sh/install.ps1 | iex"
@@ -91,10 +92,10 @@ powershell -c "irm bun.sh/install.ps1 | iex"
 
 ```
 cd example-app
-ิbun install
+bun install
 ```
 
 - ภายในโฟลเดอร์โปรเจคจะปรากฏไฟล์และโฟลเดออร์เหล่านี้เพิ่มเข้ามา
-- node_modulues/
-- bun.lock
-- vite.config.js
+  - node_modulues/
+  - bun.lock
+  - vite.config.js

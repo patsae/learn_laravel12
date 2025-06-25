@@ -1,0 +1,63 @@
+# View
+
+ในการสร้างหน้าเพจของ Laravel จะใช้ Blade template ซึ่งเป็น Template Engine ของ Laravel เอง โดยในการสร้างหน้าเพจจะทำการสร้างในโฟลเดอร์ /resources/views และให้ต่อท้ายชื่อไฟล์ของเราด้วย \*.blade.php
+
+- เปิดไฟล์ /resources/view/welcome.blade.php
+- ให้ลบทุกอย่างทิ้ง
+- สร้างโค้ด html 5 ใหม่แทนลงไป
+
+# Nested View Directories
+
+หากใน views ของเรามีการแบ่งโฟลเดอร์เพื่อจัดการแยกเพจออกเป็นกลุ่ม สามารถใช้เครื่องหมาย "." (dot) เพื่ออ้างอิงโฟลเดอร์ที่ซ้อนกัน เช่น /resources/views/admin/profile.blade.php เราสามารถอ้างอิงถึงไฟล์ได้โดย
+
+```
+return view('admin.profile', $data);
+```
+
+# สร้าง Layout
+
+- สร้างโฟลเดอร์ชื่อ layouts ใน /resources/views
+- สร้างไฟล์ชื่อ layout.blade.php ใน /resources/views/layouts
+- สร้างโค้ด template html ตามที่เราต้องการ
+
+```
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@yield('pageTitle')</title>
+    @vite('resources/css/app.css')
+    @yield('pageCss')
+</head>
+
+<body>
+    <div class="body">
+
+        <div class="content-body">
+            @yield('pageContent')
+        </div>
+
+    </div>
+
+    @vite('resources/js/app.js')
+    @yield('pageJs')
+</body>
+
+</html>
+```
+
+- @yield() ใน Laravel คือ Blade directive (คำสั่งพิเศษใน Blade template engine) ที่ใช้สำหรับกำหนด "ตำแหน่งวางเนื้อหา" จากเทมเพลตย่อย (child view) ที่จะมาแทนในเทมเพลตหลัก (layout)
+
+# ใช้งาน Layout
+
+- เปิดไฟล์ /resources/view/welcome.blade.php
+- พิมพ์คำสั่ง
+
+```
+@extends('layouts.layout')
+```
+
+- @extends() ใน Laravel คือ คำสั่ง Blade (Blade Directive) ที่ใช้สำหรับ บอกว่า view ปัจจุบันนี้จะใช้ layout ที่ชื่อว่า layouts/layout.blade.php เป็นแม่แบบ (template)
