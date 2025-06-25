@@ -67,3 +67,33 @@
 
 ไฟล์ index.php จะทำการโหลด autoloader ที่ถูกสร้างโดย Composer และจากนั้นจะดึงอินสแตนซ์ของแอปพลิเคชัน Laravel มาจากไฟล์ bootstrap/app.php
 การทำงานแรกที่ Laravel ดำเนินการคือ การสร้างอินสแตนซ์ของ application / service container ขึ้นมา
+
+# PHP Artisan
+
+PHP Artisan คือชุดคำสั่งที่มาพร้อมกับเฟรมเวิร์ก Laravel ซึ่งใช้สำหรับจัดการงานต่างๆ ในโปรเจกต์ เช่น การสร้างไฟล์, การจัดการฐานข้อมูล, การจัดการแคช, และอื่นๆ อีกมากมาย โดยทำงานผ่าน Command Line Interface (CLI) เพื่อช่วยให้การพัฒนาเป็นไปอย่างรวดเร็วและมีประสิทธิภาพ
+
+##### ข้อมูลภายในโปรเจค
+
+```
+    php artisan storage:link
+```
+
+##### ข้อมูลเส้นทาง (Routing)
+
+```
+    php artisan route:list
+```
+
+##### สร้าง Controller, Model, View
+
+```
+    php artisan make:controller [Controller name]
+    php artisan make:model [Model name]
+    php artisan make:view [View name]
+```
+
+##### การติดตั้ง Install
+
+```
+    php artisan install:api
+```
