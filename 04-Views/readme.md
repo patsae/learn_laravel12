@@ -2,9 +2,11 @@
 
 ในการสร้างหน้าเพจของ Laravel จะใช้ Blade template ซึ่งเป็น Template Engine ของ Laravel เอง โดยในการสร้างหน้าเพจจะทำการสร้างในโฟลเดอร์ /resources/views และให้ต่อท้ายชื่อไฟล์ของเราด้วย \*.blade.php
 
-- เปิดไฟล์ /resources/view/welcome.blade.php
-- ให้ลบทุกอย่างทิ้ง
-- สร้างโค้ด html 5 ใหม่แทนลงไป
+> ##### ตัวอย่างไฟล์ view ของ laravel
+>
+> /resources
+> /views
+> welcome.blade.php
 
 # Nested View Directories
 
@@ -12,6 +14,37 @@
 
 ```
 return view('admin.profile', $data);
+```
+
+# First Page
+
+- เปิดไฟล์ /resources/view/welcome.blade.php
+- ให้ลบทุกอย่างทิ้ง
+- สร้างโค้ด html 5 ใหม่แทนลงไป
+
+```
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+
+<body>
+    <div class="body">
+
+        <div class="content-body">
+            <h1>Hello World</h1>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
 ```
 
 # สร้าง Layout
@@ -30,7 +63,6 @@ return view('admin.profile', $data);
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('pageTitle')</title>
     @vite('resources/css/app.css')
-    @yield('pageCss')
 </head>
 
 <body>
@@ -41,9 +73,7 @@ return view('admin.profile', $data);
         </div>
 
     </div>
-
     @vite('resources/js/app.js')
-    @yield('pageJs')
 </body>
 
 </html>
@@ -54,10 +84,20 @@ return view('admin.profile', $data);
 # ใช้งาน Layout
 
 - เปิดไฟล์ /resources/view/welcome.blade.php
+- ลบเนื้อหา HTML ออกทั้งหมด
 - พิมพ์คำสั่ง
 
 ```
 @extends('layouts.layout')
+
+@section('pageTitle', 'หน้าแรก')
+
+@section('pageContent')
+    <div>
+        <h1>Hello World</h1>
+    </div>
+@endsection
 ```
 
-- @extends() ใน Laravel คือ คำสั่ง Blade (Blade Directive) ที่ใช้สำหรับ บอกว่า view ปัจจุบันนี้จะใช้ layout ที่ชื่อว่า layouts/layout.blade.php เป็นแม่แบบ (template)
+- @extends ใน Laravel คือ คำสั่ง Blade (Blade Directive) ที่ใช้สำหรับ บอกว่า view ปัจจุบันนี้จะใช้ layout ที่ชื่อว่า layouts/layout.blade.php เป็นแม่แบบ (template)
+- @section คือคำสั่งใน Blade Template Engine ของ Laravel ซึ่งใช้สำหรับกำหนด “ส่วนของเนื้อหา” (section) ที่จะถูกนำไปแสดงใน layout หลัก (เช่น layouts.app)
