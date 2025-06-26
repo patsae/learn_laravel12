@@ -80,7 +80,7 @@ public function welcome_page()
 - ใน Views ของ laravel สามารถใช้งานตัวแปรที่มาจาก Controller ได้ทันที
 - หากต้องการแทรกค่าของตัวแปรใน tag ของ HTML สามารถทำได้โดยแทรกตัวแปลลงในเครื่องหมาย {{ $variable }}
 
-> <h1 class="heading-primary text-center">{{ $pageTitle }}</h1>
+> <some-html-tag>{{ $pageTitle }}</some-html-tag>
 
 # Laravel Blade Directive
 
