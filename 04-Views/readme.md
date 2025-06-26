@@ -12,9 +12,7 @@
 
 หากใน views ของเรามีการแบ่งโฟลเดอร์เพื่อจัดการแยกเพจออกเป็นกลุ่ม สามารถใช้เครื่องหมาย "." (dot) เพื่ออ้างอิงโฟลเดอร์ที่ซ้อนกัน เช่น /resources/views/admin/profile.blade.php เราสามารถอ้างอิงถึงไฟล์ได้โดย
 
-```
-return view('admin.profile', $data);
-```
+> return view('admin.profile', $data);
 
 # First Page
 
