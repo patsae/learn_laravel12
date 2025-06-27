@@ -31,11 +31,13 @@ Laravel มี middleware ชื่อว่า ValidateCsrfToken ซึ่ง�
 
 ##### เมื่อ render แล้ว browser จะเห็นโค้ด HTMLดังนี้
 
+```
 > <form method="POST" action="/submit">
 >     <input type="hidden" name="_token" value="eyJpdiI6I...">
 >     <input type="text" name="name">
 >     <button type="submit">ส่งข้อมูล</button>
 > </form>
+```
 
 # Validation Errors
 
