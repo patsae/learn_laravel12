@@ -41,47 +41,6 @@ Route::get('/aboutme', [PageController::class, 'aboutme_page']);
 - ส่ง response เป็น view, JSON, redirect หรืออื่นๆ
 - จัดระเบียบโค้ด ทำให้ไม่เขียน logic อยู่ใน Route โดยตรง
 
-# ▶️ การส่งค่าจาก Controller ไปยัง Views
-
-ใน Laravel เราสามารถส่งค่าตัวแปรหรือข้อมูลที่ต้องการจาก Controller ไปยัง View ได้ด้วย compact()
-
-- สร้าง function welcome_page ใน PageController
-
-```
-public function welcome_page()
-{
-    $pageTitle = "My Journey";
-    $journey = [
-        [
-            "cover" => "https://dummyjson.com/image/150",
-            "title" => "#Some place 1",
-            "content" => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A repudiandae quas perferendis in hic illum, quaerat eum deserunt, tenetur officiis laborum, sit laboriosam commodi totam ad. Aliquid impedit exercitationem perspiciatis?",
-            "date" => "2025-06-26"
-        ],
-        [
-            "cover" => "https://dummyjson.com/image/150",
-            "title" => "#Some place 2",
-            "content" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit vel, corporis libero delectus quas consectetur. Libero commodi rerum veniam similique architecto fuga, incidunt tenetur nobis in recusandae earum voluptatum iure.",
-            "date" => "2025-06-26"
-        ],
-        [
-            "cover" => "https://dummyjson.com/image/150",
-            "title" => "#Some place 3",
-            "content" => "Lorem ipsum dolor, sit amet consectetur adipisicing elit. At, esse. Saepe consectetur in impedit eaque qui cupiditate, cum quaerat. Eligendi impedit atque consequuntur exercitationem iure, quae a adipisci voluptatibus amet!",
-            "date" => "2025-06-26"
-        ],
-    ];
-
-    return view('welcome', compact('pageTitle', 'journey'));
-}
-```
-
-- แก้ไข welcome.blade.php
-- ใน Views ของ laravel สามารถใช้งานตัวแปรที่มาจาก Controller ได้ทันที
-- หากต้องการแทรกค่าของตัวแปรใน tag ของ HTML สามารถทำได้โดยแทรกตัวแปลลงในเครื่องหมาย {{ $variable }}
-
-> <some-html-tag>{{ $pageTitle }}</some-html-tag>
-
 # Laravel Blade Directive
 
 ใน Blade template ของ Laravel ได้เตรียมชุดคำสั่งเอาไว้มากมาย เพื่ออำนวยความสะดวกในการเขียนโค้ด
@@ -132,3 +91,44 @@ public function welcome_page()
 ```
 @dd("Debug code")
 ```
+
+# ▶️ Workshop การส่งค่าจาก Controller ไปยัง Views
+
+ใน Laravel เราสามารถส่งค่าตัวแปรหรือข้อมูลที่ต้องการจาก Controller ไปยัง View ได้ด้วย compact()
+
+- สร้าง function welcome_page ใน PageController
+
+```
+public function welcome_page()
+{
+    $pageTitle = "My Journey";
+    $journey = [
+        [
+            "cover" => "https://dummyjson.com/image/150",
+            "title" => "#Some place 1",
+            "content" => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A repudiandae quas perferendis in hic illum, quaerat eum deserunt, tenetur officiis laborum, sit laboriosam commodi totam ad. Aliquid impedit exercitationem perspiciatis?",
+            "date" => "2025-06-26"
+        ],
+        [
+            "cover" => "https://dummyjson.com/image/150",
+            "title" => "#Some place 2",
+            "content" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit vel, corporis libero delectus quas consectetur. Libero commodi rerum veniam similique architecto fuga, incidunt tenetur nobis in recusandae earum voluptatum iure.",
+            "date" => "2025-06-26"
+        ],
+        [
+            "cover" => "https://dummyjson.com/image/150",
+            "title" => "#Some place 3",
+            "content" => "Lorem ipsum dolor, sit amet consectetur adipisicing elit. At, esse. Saepe consectetur in impedit eaque qui cupiditate, cum quaerat. Eligendi impedit atque consequuntur exercitationem iure, quae a adipisci voluptatibus amet!",
+            "date" => "2025-06-26"
+        ],
+    ];
+
+    return view('welcome', compact('pageTitle', 'journey'));
+}
+```
+
+- แก้ไข welcome.blade.php
+- ใน Views ของ laravel สามารถใช้งานตัวแปรที่มาจาก Controller ได้ทันที
+- หากต้องการแทรกค่าของตัวแปรใน tag ของ HTML สามารถทำได้โดยแทรกตัวแปลลงในเครื่องหมาย {{ $variable }}
+
+> <some-html-tag>{{ $pageTitle }}</some-html-tag>

@@ -14,7 +14,9 @@
 
 > return view('admin.profile', $data);
 
-# First Page
+# Workshop สร้าง Layout และ Page ใน Laravel
+
+##### First Page
 
 - เปิดไฟล์ /resources/view/welcome.blade.php
 - ให้ลบทุกอย่างทิ้ง
@@ -45,7 +47,7 @@
 </html>
 ```
 
-# สร้าง Layout
+##### สร้าง Layout
 
 - สร้างโฟลเดอร์ชื่อ layouts ใน /resources/views
 - สร้างไฟล์ชื่อ layout.blade.php ใน /resources/views/layouts
@@ -79,7 +81,7 @@
 
 - @yield() ใน Laravel คือ Blade directive (คำสั่งพิเศษใน Blade template engine) ที่ใช้สำหรับกำหนด "ตำแหน่งวางเนื้อหา" จากเทมเพลตย่อย (child view) ที่จะมาแทนในเทมเพลตหลัก (layout)
 
-# ใช้งาน Layout
+##### ใช้งาน Layout
 
 - เปิดไฟล์ /resources/view/welcome.blade.php
 - ลบเนื้อหา HTML ออกทั้งหมด

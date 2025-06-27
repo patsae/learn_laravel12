@@ -55,3 +55,7 @@ h1 {
 ```
 <h1 class="heading-primary">Hello World</h1>
 ```
+
+# Workshop ตกแต่งหน้า Page ด้วย Tailwind CSS
+
+- ให้ตกแต่งหน้า Page ด้วย Tailwind CSS

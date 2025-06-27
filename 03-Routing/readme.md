@@ -43,11 +43,11 @@ Route::get('/', function () {
 ใน Laravel เราสามารถส่ง Parameters ต่างๆ มากับ url หรือรับค่า Parameters จาก url ได้โดยการประกาศ parameter ไว้ในเครื่องหมาย { } แล้วที่ callback function ให้ประกาศตัวแปรสำหรับรับ parameter จาก url ขึ้นมา โดยชื่อ paramter ที่ url กับที่ callback function ต้องเป็นชื่อเดียวกัน
 
 ```
-Route::get('/user/{id}', function (string $id) {
+Route::get('/users/{id}', function (string $id) {
     return 'User '.$id;
 });
 
-Route::get('/user/{faculty}/{unit}', function (string $faculty, string $unit) {
+Route::get('/users/{faculty}/{unit}', function (string $faculty, string $unit) {
     return 'User '. $faculty . ' ' . $unit;
 });
 ```
@@ -57,7 +57,7 @@ Route::get('/user/{faculty}/{unit}', function (string $faculty, string $unit) {
 นอกจากนี้ยังสามารถทำเป็น option parameter ด้วยการใส่เครื่องหมาย ? ต่อท้ายชื่อ parameter
 
 ```
-Route::get('/user/{name?}', function (?string $name = null) {
+Route::get('/users/{name?}', function (?string $name = null) {
     return $name;
 });
 ```
@@ -67,11 +67,11 @@ Route::get('/user/{name?}', function (?string $name = null) {
 สามารถกำหนด Regular expression สำหรับการตรวจสอบ parameter ที่ส่งมาใน route ได้
 
 ```
-Route::get('/user/{idx}', function (string $idx) {
+Route::get('/users/{idx}', function (string $idx) {
     return $idx;
 })->where('id', '^[0-9]\d{0,12}$');
 
-Route::get('/user/{id}/{name}', function (string $id, string $name) {
+Route::get('/users/{id}/{name}', function (string $id, string $name) {
     // ...
 })->whereNumber('id')->whereAlpha('name');
 ```
@@ -81,7 +81,7 @@ Route::get('/user/{id}/{name}', function (string $id, string $name) {
 ในบางครั้งเราอาจมี route ยาวเกินไป เราสามารถตั้งชื่อให้ route นี้ได้ด้วยฟังกชั่น name();
 
 ```
-Route::get('/user/profile', function () {
+Route::get('/users/profile', function () {
     // ...
 })->name('profile');
 ```
@@ -91,49 +91,34 @@ Route::get('/user/profile', function () {
 สามารถจัดการ route ให้เป็นกลุ่มได้ด้วย function group()
 
 ```
-Route::get('/user')->group(function(){
+Route::get('/users')->group(function(){
     Route::post('/add', function(){
         //add user
-    })
+    });
     Route::put('/update', function(){
         //update user
-    })
+    });
     Route::delete('/delete', function(){
         //delete user
-    })
+    });
 });
 ```
 
-# Route for Api
+# Workshop การรับ Request จาก HTTP Request
 
-การสร้าง route สำหรับเส้น api โดยปกติมักจะทำ route แยกออกมาจากในส่วนของ /route/web.php เพื่อความสะดวกในการบริหารจัดการและความเป็นระเบียบเรียบร้อย
+ใน Controller ของ Laravel เราสามารถรับค่าที่ส่งมาจาก HTTP Request ได้ด้วย **Class Illuminate\Http\Request**
 
-```
-php artisan install:api
-One new database migration has been published. Would you like to run all pending database migrations? (yes/no) [no]:
-```
-
-เมื่อทำการติดตั้ง route api เสร็จแล้วจะได้ไฟล์ /routes/api.php เพิ่มขึ้นมาและใน /bootstrap/app.php จะมีการลงทะเบียน route ของ api เพิ่มขึ้นมา
+- เพิ่ม route / ขึ้นมาใหม่ใน route group ของ /users
 
 ```
-// routes
-        /routes
-++++     - api.php
-         - web.php
-         - console.php
+Route::get('/', function(Request $request){
+    $request['url'] = $request->url();
+    $request['method'] = $request->method();
+    $request['ip'] = $request->ip();
+    $request['email'] = $request->get("email");
 
-// bootstrap/app.php
-        return Application::configure(basePath: dirname(__DIR__))
-        ->withRouting(
-            web: __DIR__.'/../routes/web.php',
-++++        api: __DIR__.'/../routes/api.php',
-            commands: __DIR__.'/../routes/console.php',
-            health: '/up',
-        )
-        ->withMiddleware(function (Middleware $middleware): void {
-            //
-        })
-        ->withExceptions(function (Exceptions $exceptions): void {
-            //
-        })->create();
+    dd($request);
+});
 ```
+
+- ทดสอบ http://localhost:8000/users?email=med@mail.com
