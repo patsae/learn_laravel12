@@ -20,7 +20,7 @@
   - XML PHP Extension
 
 - Composer
-- Laravel installer
+- Laravel installer (แนะนำ)
 - Node.js หรือ Bun.js หรือ javascript runtime อื่นๆ (option)
 
 # 🚀 ติดตั้ง PHP และ Composer บน Windows ด้วยคำสั่งเดียว

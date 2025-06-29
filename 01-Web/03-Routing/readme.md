@@ -1,6 +1,6 @@
 # Routing
 
-การจัดการ routing ใน Laravel จะกระทำในโฟลเดอร์ /routes ในโฟลเดอร์นี้เราสามารถสร้าง route มาเพื่อใช้ควบคุมการเข้าถึงหน้าเพจต่างๆ ของ application
+การจัดการ routing ใน Laravel จะกระทำในโฟลเดอร์ /routes ในโฟลเดอร์นี้เราสามารถสร้าง route มาเพื่อใช้ควบคุมการเข้าถึงหน้าเพจต่างๆ ของแอปพลิเคชั่น
 หากมีการเพิ่มไฟล์ route ใหม่จะต้องไปลงทะเบียนในไฟล์ /bootstap/app.php ด้วยเพื่อให้สามารถใช้งาน route นั้นได้
 
 ```
@@ -44,11 +44,11 @@ Route::get('/', function () {
 
 ```
 Route::get('/users/{id}', function (string $id) {
-    return 'User '.$id;
+    return 'User id is '.$id;
 });
 
 Route::get('/users/{faculty}/{unit}', function (string $faculty, string $unit) {
-    return 'User '. $faculty . ' ' . $unit;
+    return 'Faculty is '. $faculty . ' and Unit is ' . $unit;
 });
 ```
 
@@ -57,8 +57,8 @@ Route::get('/users/{faculty}/{unit}', function (string $faculty, string $unit) {
 นอกจากนี้ยังสามารถทำเป็น option parameter ด้วยการใส่เครื่องหมาย ? ต่อท้ายชื่อ parameter
 
 ```
-Route::get('/users/{name?}', function (?string $name = null) {
-    return $name;
+Route::get('/users/{id}/{name?}', function (string $id, ?string $name = null) {
+    return "User " . ($name ?? '') . " id is " . $id;
 });
 ```
 
@@ -69,7 +69,7 @@ Route::get('/users/{name?}', function (?string $name = null) {
 ```
 Route::get('/users/{idx}', function (string $idx) {
     return $idx;
-})->where('id', '^[0-9]\d{0,12}$');
+})->where('idx', '^[0-9]\d{12}$');
 
 Route::get('/users/{id}/{name}', function (string $id, string $name) {
     // ...
@@ -78,12 +78,24 @@ Route::get('/users/{id}/{name}', function (string $id, string $name) {
 
 # Named Routes
 
-ในบางครั้งเราอาจมี route ยาวเกินไป เราสามารถตั้งชื่อให้ route นี้ได้ด้วยฟังกชั่น name();
+เราสามารถตั้งชื่อให้ route นี้ได้ด้วย method name() เพื่อความสะดวกในการเรียกใช้เขียนโปรแกรม โดยชื่อที่ตั้งใน name() จะต้องเป็น unique ที่ไม่ซ้ำกัน แล้วจะเรียกใช้ naming ผ่าน method ที่ชื่อว่า route()
 
 ```
-Route::get('/users/profile', function () {
+Route::get('/users/{id}/profile', function (string $id) {
     // ...
 })->name('profile');
+
+$url = route('profile', ['id' => 1]);
+```
+
+# Route fallback
+
+โดยปรกติหาก Laravel ไม่พบ url จะคืนค่ากลับเป็นหน้าเพจ 404 แต่หากเราต้องการจัดการเองสามารถทำได้ผ่าน Route::fallback()
+
+```
+Route::fallback(function(){
+    return "ไม่พบหน้าเพจ";
+});
 ```
 
 # Route Groups
@@ -91,15 +103,17 @@ Route::get('/users/profile', function () {
 สามารถจัดการ route ให้เป็นกลุ่มได้ด้วย function group()
 
 ```
-Route::get('/users')->group(function(){
-    Route::post('/add', function(){
-        //add user
+Route::prefix('/users')->group(function () {
+    Route::get('/john', function () {
+        return "john";
     });
-    Route::put('/update', function(){
-        //update user
+
+    Route::get('/david', function () {
+        return "david";
     });
-    Route::delete('/delete', function(){
-        //delete user
+
+    Route::get('/milo', function () {
+        return "milo";
     });
 });
 ```
@@ -111,13 +125,13 @@ Route::get('/users')->group(function(){
 - เพิ่ม route / ขึ้นมาใหม่ใน route group ของ /users
 
 ```
-Route::get('/', function(Request $request){
-    $request['url'] = $request->url();
-    $request['method'] = $request->method();
-    $request['ip'] = $request->ip();
-    $request['email'] = $request->get("email");
+Route::get('/', function (Request $request) {
+    $req['url'] = $request->url();
+    $req['method'] = $request->method();
+    $req['ip'] = $request->ip();
+    $req['email'] = $request->get("email");
 
-    dd($request);
+    dd($req);
 });
 ```
 
