@@ -21,6 +21,7 @@ Tailwind CSS คือ CSS Framework แบบ utility-first ที่เน้�
 
 # การใช้งาน Tailwind CSS
 
+- วิธีการติดตั้ง [Tailwind CSS](https://tailwindcss.com/docs/installation/using-vite)
 - ทดลองใส่ class ของ tailwind css ในไฟล์ welcome.blade.php
 
 ```

@@ -2,11 +2,11 @@
 
 ในการสร้างหน้าเพจของ Laravel จะใช้ Blade template ซึ่งเป็น Template Engine ของ Laravel เอง โดยในการสร้างหน้าเพจจะทำการสร้างในโฟลเดอร์ /resources/views และให้ต่อท้ายชื่อไฟล์ของเราด้วย \*.blade.php
 
-> ##### ตัวอย่างไฟล์ view ของ laravel
+> **ตัวอย่างไฟล์ view ของ laravel**
 >
-> /resources
-> /views
-> welcome.blade.php
+> - resources/
+>   - views/
+>     - welcome.blade.php
 
 # Nested View Directories
 
@@ -66,13 +66,9 @@
 </head>
 
 <body>
-    <div class="body">
 
-        <div class="content-body">
-            @yield('pageContent')
-        </div>
+   @yield('pageContent')
 
-    </div>
     @vite('resources/js/app.js')
 </body>
 
