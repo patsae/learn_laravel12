@@ -2,23 +2,22 @@
 
 ก่อนเริ่มต้นติดตั้ง Laravel จำเป็นต้องเตรียมเครื่องมือและสภาพแวดล้อมให้พร้อมก่อน เพื่อให้การพัฒนาเป็นไปอย่างราบรื่น
 
-- PHP version 8.2 ขึ้นไป
+- PHP Extensions ที่ Laravel ต้องการ
 
-  - PHP Extensions ที่ Laravel ต้องการ
-    - PHP >= 8.2
-    - Ctype PHP Extension
-    - cURL PHP Extension
-    - DOM PHP Extension
-    - Fileinfo PHP Extension
-    - Filter PHP Extension
-    - Hash PHP Extension
-    - Mbstring PHP Extension
-    - OpenSSL PHP Extension
-    - PCRE PHP Extension
-    - PDO PHP Extension
-    - Session PHP Extension
-    - Tokenizer PHP Extension
-    - XML PHP Extension
+  - PHP >= 8.2
+  - Ctype PHP Extension
+  - cURL PHP Extension
+  - DOM PHP Extension
+  - Fileinfo PHP Extension
+  - Filter PHP Extension
+  - Hash PHP Extension
+  - Mbstring PHP Extension
+  - OpenSSL PHP Extension
+  - PCRE PHP Extension
+  - PDO PHP Extension
+  - Session PHP Extension
+  - Tokenizer PHP Extension
+  - XML PHP Extension
 
 - Composer
 - Laravel installer
