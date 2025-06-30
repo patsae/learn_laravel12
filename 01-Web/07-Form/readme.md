@@ -39,19 +39,62 @@ Laravel มี middleware ชื่อว่า ValidateCsrfToken ซึ่ง�
 </form>
 ```
 
+# Validation data
+
+Laravel มีระบบ Validation ที่ใช้งานง่าย อ่านเข้าใจได้ และขยายต่อได้ดี สามารถใช้ตรวจสอบข้อมูลที่ผู้ใช้งานกรอกในฟอร์ม หรือข้อมูลจาก API request ต่าง ๆ
+
+```
+public function login(Request $request)
+{
+    if (!empty($request->input())) {
+        try {
+            $request->validate([
+                "email" => "required|email:rfc,dns",
+                "password" => "required"
+            ]);
+
+            return redirect('/login')->with('loginResult', 'login success!');
+        } catch (Exception $e) {
+            return redirect()->back()
+                ->withErrors(['loginResult' => $e->getMessage()]);
+        }
+    } else {
+        return view('login');
+    }
+}
+```
+
 # Validation Errors
 
 คำสั่ง @error ใช้เพื่อตรวจสอบข้อผิดพลาดจากการ validation ข้อมูลที่ส่งมาว่าถูกต้องตามประเภทฟิลด์ที่ระบุหรือไม่?
 ภายในคำสั่ง @error เราสามารถแสดงข้อความผิดพลาดโดยใช้ตัวแปร $message
 
 ```
-<label for="title">Post Title</label>
+<form action="login" method="POST" class="flex flex-col gap-4">
+    @csrf
 
-<input  id="title" type="text" class="@error('title') is-invalid @enderror" />
+    <div class="flex flex-col gap-1">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" />
+    </div>
+    <div class="flex flex-col gap-1">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" />
+    </div>
 
-@error('title')
-    <div class="alert alert-danger">{{ $message }}</div>
-@enderror
+    <input type="submit" value="เข้าสู่ระบบ"
+        class="rounded bg-indigo-600 text-white px-2.5 py-1 w-fit mx-auto cursor-pointer" />
+
+    //กรณี success
+    @if (session('loginResult'))
+        <p class="text-green-700 mx-auto">{{ session('loginResult') }}</p>
+    @endif
+
+    //กรณี error
+    @error('loginResult')
+        <p class="text-red-700 mx-auto">{{ $message }}</p>
+    @enderror
+</form>
 ```
 
 นอกจากแสดงเป็นข้อความผิดพลาดแล้ว ยังสามารถใช้เป็นเงื่อนไขได้ด้วย
@@ -62,7 +105,11 @@ Laravel มี middleware ชื่อว่า ValidateCsrfToken ซึ่ง�
 <input id="email" type="email" class="@error('email') is-invalid @else is-valid @enderror" />
 ```
 
+##### ดูกฏเพิ่มเติมได้ที่ลิงค์
+
+[validation rules](https://laravel.com/docs/12.x/validation#available-validation-rules)
+
 # Workshop สร้างฟอร์ม Login
 
 - สร้างไฟล์ /resources/views/login.blade.php
-- สร้างฟอ์รมสำหรับ login เข้าสู่โปรแกรมโดยมี input คือ text และ password และปุ่ม submit
+- สร้างฟอ์รมสำหรับ login เข้าสู่โปรแกรมโดยมี input คือ email และ password และปุ่ม submit
