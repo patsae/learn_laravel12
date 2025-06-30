@@ -44,20 +44,19 @@ Laravel มี middleware ชื่อว่า ValidateCsrfToken ซึ่ง�
 Laravel มีระบบ Validation ที่ใช้งานง่าย อ่านเข้าใจได้ และขยายต่อได้ดี สามารถใช้ตรวจสอบข้อมูลที่ผู้ใช้งานกรอกในฟอร์ม หรือข้อมูลจาก API request ต่าง ๆ
 
 ```
-public function login(Request $request)
+public function login_page(Request $request)
 {
     if (!empty($request->input())) {
-        try {
-            $request->validate([
-                "email" => "required|email:rfc,dns",
-                "password" => "required"
-            ]);
+        $request->validate([
+            "email" => "required|email:rfc,dns",
+            "password" => "required"
+        ], [
+            "email.required" => "กรุณาระบุ email",
+            "email.email" => "รูปแบบ email ไม่ถูกต้อง",
+            "password.required" => "กรุณาระบุ password",
+        ]);
 
-            return redirect('/login')->with('loginResult', 'login success!');
-        } catch (Exception $e) {
-            return redirect()->back()
-                ->withErrors(['loginResult' => $e->getMessage()]);
-        }
+        return redirect('/')->with('loginResult', 'login success!');
     } else {
         return view('login');
     }
@@ -91,9 +90,14 @@ public function login(Request $request)
     @endif
 
     //กรณี error
-    @error('loginResult')
-        <p class="text-red-700 mx-auto">{{ $message }}</p>
-    @enderror
+    <p class="text-red-700 mx-auto">
+        @error('email')
+            {{ $message }}
+        @enderror
+        @error('password')
+            {{ $message }}
+        @enderror
+    </p>
 </form>
 ```
 
