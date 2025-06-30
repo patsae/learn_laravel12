@@ -20,9 +20,24 @@
   - Tokenizer PHP Extension
   - XML PHP Extension
 
+# Build Application
+
+- เปลี่ยนตัวแปรใน .env ให้เป็นสำหรับ production
+
+```
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=Domain...
+```
+
+```
+composer run build
+bun run build
+```
+
 # Upload file to server
 
-ใน Laravel แอปพลิเคชั่นมีไฟล์สำคัญที่ต้องอัพโหลดไปขึ้นที่ server ดังนี้
+การอัพโหลดโปรเจ็คขึ้นสู่เซิร์ฟเวอร์เพื่อใช้งานจริง มีไฟล์สำคัญที่ต้องอัพโหลดไปขึ้นที่ server ดังนี้
 
 - Project/
   - app/
