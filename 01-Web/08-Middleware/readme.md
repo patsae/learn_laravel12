@@ -49,7 +49,7 @@ public function handle($request, Closure $next)
 
 # Registering Middleware
 
-##### Global Middleware
+### Global Middleware
 
 ถ้าหากต้องการให้ Middleware สามารถทำงานได้ทุก HTTP Request ที่ส่งเข้ามาในแอปพลิเคชั่น เราสามารถเพิ่ม middleware ดังกล่าวเข้าใน Stack middleware ของ Laravel ได้โดยการเพิ่ม middleware ของเราเข้าไปในไฟล์ bootstrap/app.php ในแอปพลิเคชั่นของเรา
 
@@ -111,7 +111,7 @@ use App\Http\Middleware\Second;
 })
 ```
 
-##### Assigning Middleware to Routes
+### Assigning Middleware to Routes
 
 หากต้องการใช้ middleware เฉพาะบางเส้นทาง เราสามารถ Invoke middleware ต่อท้าย method เมื่อกำหนด route
 
