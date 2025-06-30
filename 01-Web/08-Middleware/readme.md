@@ -72,20 +72,18 @@ use App\Http\Middleware\IsAuth;
 
 ```
 use App\Http\Middleware\IsAuth;
-->withMiddleware(function (Middleware $middleware): void {
-    ->withMiddleware(function (Middleware $middleware) {
-        $middleware->use([
-            \Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks::class,
-            \Illuminate\Http\Middleware\TrustProxies::class,
-            \Illuminate\Http\Middleware\HandleCors::class,
-            \Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance::class,
-            \Illuminate\Http\Middleware\ValidatePostSize::class,
-            \Illuminate\Foundation\Http\Middleware\TrimStrings::class,
-            \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+->withMiddleware(function (Middleware $middleware) {
+    $middleware->use([
+        \Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks::class,
+        \Illuminate\Http\Middleware\TrustProxies::class,
+        \Illuminate\Http\Middleware\HandleCors::class,
+        \Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance::class,
+        \Illuminate\Http\Middleware\ValidatePostSize::class,
+        \Illuminate\Foundation\Http\Middleware\TrimStrings::class,
+        \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
 
-            // add stack middleware here
-        ]);
-    })
+        // add stack middleware here
+    ]);
 })
 ```
 
