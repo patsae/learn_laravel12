@@ -144,7 +144,7 @@ $deleted = Attractions::where('active', 0)->delete();
 
 ```
 
-# ประเภทของ Eloquent Relationship
+# ประเภทของ [Eloquent Relationship](https://laravel.com/docs/12.x/eloquent-relationships#introduction)
 
 | ความสัมพันธ์           | คำอธิบาย                                                                  | Method                        |
 | ---------------------- | ------------------------------------------------------------------------- | ----------------------------- |
