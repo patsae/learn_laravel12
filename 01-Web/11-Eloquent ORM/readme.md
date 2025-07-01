@@ -146,11 +146,12 @@ $deleted = Attractions::where('active', 0)->delete();
 
 # ประเภทของ Eloquent Relationship
 
-| ความสัมพันธ์ | คำอธิบาย | Method
-One To One | หนึ่งต่อหนึ่ง เช่น User 1 คนมี Profile เดียว | hasOne, belongsTo
-One To Many | หนึ่งต่อหลาย เช่น Post 1 อันมีหลาย Comment | hasMany, belongsTo
-Many To Many | หลายต่อหลาย เช่น User กด like ได้หลาย Post และ Post ถูก like ได้หลาย User | belongsToMany
-Has One / Many Through | ความสัมพันธ์ข้ามตาราง | hasOneThrough, hasManyThrough
+| ความสัมพันธ์           | คำอธิบาย                                                                  | Method                        |
+| ---------------------- | ------------------------------------------------------------------------- | ----------------------------- |
+| One To One             | หนึ่งต่อหนึ่ง เช่น User 1 คนมี Profile เดียว                              | hasOne, belongsTo             |
+| One To Many            | หนึ่งต่อหลาย เช่น Post 1 อันมีหลาย Comment                                | hasMany, belongsTo            |
+| Many To Many           | หลายต่อหลาย เช่น User กด like ได้หลาย Post และ Post ถูก like ได้หลาย User | belongsToMany                 |
+| Has One / Many Through | ความสัมพันธ์ข้ามตาราง                                                     | hasOneThrough, hasManyThrough |
 
 Laravel จะเดาชื่อ field เช่น user_id, post_id แต่หากในตารางของเราไม่ได้ตั้งชื่อฟิลด์ตามนี้ เราาก็สามารถกำหนดเองได้
 
