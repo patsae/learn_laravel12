@@ -143,3 +143,90 @@ $attractions->delete();
 $deleted = Attractions::where('active', 0)->delete();
 
 ```
+
+# ประเภทของ Eloquent Relationship
+
+| ความสัมพันธ์ | คำอธิบาย | Method
+One To One | หนึ่งต่อหนึ่ง เช่น User 1 คนมี Profile เดียว | hasOne, belongsTo
+One To Many | หนึ่งต่อหลาย เช่น Post 1 อันมีหลาย Comment | hasMany, belongsTo
+Many To Many | หลายต่อหลาย เช่น User กด like ได้หลาย Post และ Post ถูก like ได้หลาย User | belongsToMany
+Has One / Many Through | ความสัมพันธ์ข้ามตาราง | hasOneThrough, hasManyThrough
+
+Laravel จะเดาชื่อ field เช่น user_id, post_id แต่หากในตารางของเราไม่ได้ตั้งชื่อฟิลด์ตามนี้ เราาก็สามารถกำหนดเองได้
+
+```
+return $this->hasOne(Phone::class, 'foreign_key', 'local_key');
+```
+
+# ✅ ตัวอย่างความสัมพันธ์พื้นฐาน
+
+### One to One
+
+```
+// User.php
+public function profile()
+{
+    return $this->hasOne(Profile::class);
+}
+
+// Profile.php
+public function user()
+{
+    return $this->belongsTo(User::class);
+}
+```
+
+### One to Many
+
+```
+// Post.php
+public function comments()
+{
+    return $this->hasMany(Comment::class);
+}
+
+// Comment.php
+public function post()
+{
+    return $this->belongsTo(Post::class);
+}
+```
+
+### Many to Many
+
+```
+// User.php
+public function roles()
+{
+    return $this->belongsToMany(Role::class);
+}
+
+// Role.php
+public function users()
+{
+    return $this->belongsToMany(User::class);
+}
+
+```
+
+# ✅ การเรียกใช้ความสัมพันธ์
+
+### Eager Loading (โหลดพร้อมกัน)
+
+```
+$users = User::with('profile')->get(); // ลดจำนวน query
+```
+
+### Lazy Loading (โหลดภายหลัง)
+
+```
+$user = User::find(1);
+$profile = $user->profile; // จะยิง query แยก
+```
+
+### เข้าถึงข้อมูล
+
+```
+echo $user->profile->bio;
+echo $post->comments[0]->content;
+```
