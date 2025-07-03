@@ -66,7 +66,7 @@ use App\Http\Middleware\IsAuth;
 - append() เป็น method ที่ใช้ในการเพิ่ม middleware ไปยังท้ายรายการของ global middleware
 - prepend() เป็น method ที่ใช้ในการเพิ่ม middleware ไปยังต้นรายการของ global middleware
 
-##### Manually Managing Laravel's Default Global Middleware
+### Manually Managing Laravel's Default Global Middleware
 
 นอกจากนี้หากเราต้องการจัดการ middleware เองแบบเต็มที่ เราสามารถกำหนด Stack เริ่มต้นของ Laravel เองได้ผ่าน method use() เราสามารถเพิ่มหรือลด middleware จาก stack นี้ได้ตามที่ต้องการ
 
@@ -87,7 +87,21 @@ use App\Http\Middleware\IsAuth;
 })
 ```
 
-##### Group Middleware
+### Middleware Aliases
+
+เราสามารถกำหนด ชื่อย่อ (alias) ให้กับ middleware ได้ในไฟล์ bootstrap/app.php ของแอปพลิเคชัน การใช้ alias จะเป็นการตั้งชื่อสั้น ๆ แทนคลาส middleware จริง ซึ่งมีประโยชน์มากเมื่อชื่อคลาสยาวหรือต้องใช้บ่อย
+
+```
+use App\Http\Middleware\EnsureUserIsSubscribed;
+
+->withMiddleware(function (Middleware $middleware) {
+    $middleware->alias([
+        'alias.name' => EnsureUserIsSubscribed::class
+    ]);
+})
+```
+
+### Group Middleware
 
 หากเรามี middleware หลายๆตัว เราสามารถจัดกลุ่ม stack การทำงานของ middleware ได้
 
