@@ -66,7 +66,11 @@ use App\Http\Middleware\IsAuth;
 - append() เป็น method ที่ใช้ในการเพิ่ม middleware ไปยังท้ายรายการของ global middleware
 - prepend() เป็น method ที่ใช้ในการเพิ่ม middleware ไปยังต้นรายการของ global middleware
 
-##### Manually Managing Laravel's Default Global Middleware
+##### ⚠️ ข้อควรระวัง
+
+middleware แบบ Global จะทำงานทุกๆ Request ที่เข้ามา ถึงแม้ว่าจะใช้ withoutMiddleware ละเว้นแล้ว middleware ที่เป็น Global ก็จะยังคงทำงานอยู่
+
+### Manually Managing Laravel's Default Global Middleware
 
 นอกจากนี้หากเราต้องการจัดการ middleware เองแบบเต็มที่ เราสามารถกำหนด Stack เริ่มต้นของ Laravel เองได้ผ่าน method use() เราสามารถเพิ่มหรือลด middleware จาก stack นี้ได้ตามที่ต้องการ
 
