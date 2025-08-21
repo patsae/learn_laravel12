@@ -10,11 +10,11 @@
 
             @foreach ($attractions as $attraction)
                 <div class="row">
-                    <img src="{{ $attraction['image_url'] }}" />
+                    <img src="{{ $attraction->image_url }}" />
                     <div class="flex flex-col">
-                        <b><u>{{ $attraction['name'] }}</u></b>
-                        <p>{{ $attraction['content'] }}</p>
-                        <p><b>published: </b> {{ $attraction['date'] }} </p>
+                        <b><u>{{ $attraction->name }}</u></b>
+                        <p>{{ $attraction->description }}</p>
+                        <p><b>published: </b> {{ $attraction->created_at }} </p>
                     </div>
                 </div>
             @endforeach

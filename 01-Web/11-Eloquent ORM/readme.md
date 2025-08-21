@@ -53,11 +53,11 @@ public $incrementing = false; // บอก Eloquent ไม่ต้อง auto i
 Eloquent จะคาดหวังว่าทุกตารางจะมี field ที่บันทึกวันเวลาที่สร้างและปรับปรุงข้อมูล โดยปกติ Eloquent จะมองหา field ที่ชื่อ created_at และ update_at ทุกครั้งที่มีการสร้างหรือปรับปรุงข้อมูล
 
 ```
-const CREATED_AT = 'creation_date'; //กำหนดชื่อ field สำหรับบันทึกวันเวลาที่สร้างข้อมูล
+const CREATED_AT = 'created_date'; //กำหนดชื่อ field สำหรับบันทึกวันเวลาที่สร้างข้อมูล
 const UPDATED_AT = 'updated_date'; //กำหนดชื่อ field สำหรับบันทึกวันเวลาที่ปรับปรุงข้อมูล
 protected $dateFormat = 'U'; //กำหนด Formate date
 
-public $timestamps = false; // บอก Eloquent ไม่ต้องบันทึก created_at กับ update_at ทุกครั้งที่มีการสร้างหรือปรับปรุงข้อมูล
+public $timestamps = false; // บอก Eloquent ไม่ต้องบันทึก created_at กับ update_at ทุกครั้งที่มีการสร้างหรือปรับปรุงข้อมูล และอาจใช้ในกรณีที่ตารางไม่มีการบันทึก timestamp
 ```
 
 # Retrieving Models

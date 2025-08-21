@@ -14,10 +14,17 @@ Query Builder ของ Laravel ใช้ PDO parameter binding ซึ่งช�
 ```
 use Illuminate\Support\Facades\DB;
 
-$users = DB::table('users')
+$query = DB::table('users')
             ->where('active', 1)
             ->orderBy('name')
             ->get();
+
+$users = [];
+foreach ($query as $rows) {
+    array_push($users, $rows);
+}
+
+dd($users);
 ```
 
 ### INSERT
