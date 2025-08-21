@@ -1,12 +1,12 @@
 # Database
 
-Laravel ได้ออกแบบระบบให้สามารถทำงานกับฐานข้อมูลได้ง่ายมาก โดยมีการรองรับการเขียนโปรแกรมติดต่อกับฐานข้อมูล 3 แบบดังนี้
+Laravel ได้ออกแบบระบบให้สามารถทำงานกับฐานข้อมูลได้ง่ายมาก โดยมีการรองรับการเขียนโปรแกรมติดต่อกับฐานข้อมูล 3 วิธีดังนี้
 
-- การเขียน SQL (Raw SQL)
-- การใช้ Query Builder
-- การใช้ Eloquent ORM
+- Raw SQL
+- Query Builder
+- Eloquent ORM
 
-# ✅ Laravel รองรับแบบ built-in 5 ตัว ได้แก่
+# ✅ การติดต่อฐานข้อมูล Laravel ได้จัดเตรียม built-in ไว้ 5 ตัว ได้แก่
 
 1. MariaDB 10.3+
 2. MySQL 5.7+
@@ -57,9 +57,6 @@ use Illuminate\Support\Facades\DB;
 
 $users = DB::select('SELECT * FROM users WHERE active = ?', [1]);
 
-foreach ($users as $user) {
-    echo $user->name;
-}
 ```
 
 ### INSERT
@@ -68,7 +65,7 @@ foreach ($users as $user) {
 use Illuminate\Support\Facades\DB;
 
 DB::insert('INSERT INTO users (name, email) VALUES (?, ?)', [
-    'Byrd', 'byrd@example.com'
+    'max', 'max@example.com'
 ]);
 
 ```

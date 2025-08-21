@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2025 at 05:40 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Aug 21, 2025 at 03:52 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -84,6 +84,27 @@ INSERT INTO `places` (`id`, `name`, `location`, `description`, `category_id`, `o
 (14, 'เขาสามมุก', 'ชลบุรี', 'จุดชมวิวทะเล และสถานที่ศักดิ์สิทธิ์', 4, 'ตลอดวัน', 'ฟรี', 'https://dummyjson.com/image/250', '2025-06-29 21:23:35', '2025-07-01 22:39:19'),
 (15, 'ปาย', 'แม่ฮ่องสอน', 'เมืองท่องเที่ยวยอดนิยมของนักเดินทาง มีธรรมชาติและวัฒนธรรมผสมผสาน', 6, 'ตลอดวัน', 'ฟรี', 'https://dummyjson.com/image/250', '2025-06-29 21:23:35', '2025-07-01 22:39:25');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `email` varchar(255) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`email`, `name`, `active`) VALUES
+('david@mail.com', 'david', 1),
+('john@mail.com', 'John', 1),
+('mary@mail.com', 'mary', 1),
+
 --
 -- Indexes for dumped tables
 --
@@ -99,6 +120,12 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `places`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
