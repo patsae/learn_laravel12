@@ -5,17 +5,17 @@ Eloquent เป็น ORM (Object-Relational Mapper) ที่มาพร้อ
 # Generating Model Classes
 
 ```
-php artisan make:model Attractions
+php artisan make:model Places
 ```
 
-หลังจากทำคำสั่งเสร็จจะได้ไฟล์ model Attractions ขึ้นมาที่ app/Models/Attractions
+หลังจากทำคำสั่งเสร็จจะได้ไฟล์ model Attractions ขึ้นมาที่ app/Models/Places
 
 ```
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Attractions extends Model
+class Places extends Model
 {
     // ...
 }
@@ -66,9 +66,9 @@ public $timestamps = false; // บอก Eloquent ไม่ต้องบัน
 Eloquent model เป็น query builder ที่ช่วยให้เขียนคำสั่งเพื่อดึงข้อมูลจากตารางที่ model นั้นเชื่อมโยงอยู่ได้อย่างง่ายดาย เช่น หากต้องการดึงข้อมูลทั้งหมดในตารางสามารถใช้เมธอด all() ได้เลย
 
 ```
-use App\Models\Attractions;
+use App\Models\Places;
 
-foreach (Attractions::all() as $attr) {
+foreach (Places::all() as $attr) {
 
     echo $attr->name;
 
@@ -78,9 +78,9 @@ foreach (Attractions::all() as $attr) {
 นอกจากนี้ Eloquent model ยังสามารถทำหน้าที่เป็น Query Builder ได้อีกด้วย เราจึงสามารถเพิ่มเงื่อนไขต่างๆ เข้าไปและเรียกใช้ get() เพื่อดึงผลลัพธ์ออกมา
 
 ```
-use App\Models\Attractions;
+use App\Models\Places;
 
-$attractions = Attractions::where('active', 1)
+$places = Places::where('active', 1)
     ->orderBy('name')
     ->limit(10)
     ->get();
@@ -89,35 +89,35 @@ $attractions = Attractions::where('active', 1)
 # INSERT & UPDATE
 
 ```
-use App\Models\Attractions;
+use App\Models\Places;
 
-$inserted = Attractions::create([
+$inserted = Places::create([
     'name' => 'Lamphun'
 ])
 
 หรือ
 
-$attractions = new Attractions;
-$attractions->name = $request->name;
-$attractions->save();
+$places = new Places;
+$places->name = $request->name;
+$places->save();
 ```
 
 ```
-use App\Models\Attractions;
+use App\Models\Places;
 
-$affectedRows = Attractions::where('id', 1)->update(['active' => 0]);
+$affectedRows = Places::where('id', 1)->update(['active' => 0]);
 
 หรือ
 
-$attractions = Attractions::find(1);
-$attractions->name = "London";
-$attractions->save();
+$place = Places::find(1);
+$place->name = "London";
+$place->save();
 ```
 
 ```
-use App\Models\Attractions;
+use App\Models\Places;
 
-$attractions = Attractions::updateOrCreate(
+$place = Places::updateOrCreate(
     [
         'name' => 'London'
         'active' => 1
@@ -133,14 +133,14 @@ $attractions = Attractions::updateOrCreate(
 # DELETE
 
 ```
-use App\Models\Attractions;
+use App\Models\Places;
 
-$attractions = Attractions::find(1);
-$attractions->delete();
+$place = Places::find(1);
+$place->delete();
 
 หรือ
 
-$deleted = Attractions::where('active', 0)->delete();
+$deleted = Places::where('active', 0)->delete();
 
 ```
 
@@ -222,7 +222,7 @@ $users = User::with('profile')->get(); // ลดจำนวน query
 
 ```
 $user = User::find(1);
-$profile = $user->profile; // จะยิง query แยก
+$profile = $user->profile;
 ```
 
 ### เข้าถึงข้อมูล
